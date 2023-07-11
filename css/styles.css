@@ -1,0 +1,80 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    align-items: center;
+    align-content: center;
+}
+.container {
+    display: grid;
+    
+    align-items: center;
+    grid-gap: 15px;
+}
+input {
+    border-radius: 7px;
+}
+.image {
+    width:80vh;
+    height:20vh;
+}
+th{
+    column-width: 130vw;
+}
+#navbar{
+    font-weight: bold;
+    font-stretch: expanded ;
+    font-size: 25px;
+}
+#navbar:hover {
+    color: rgb(225, 30, 176);
+}
+footer {
+    background-color: rgb(249, 249, 249);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.grupo1 {
+    display: flex;
+    align-items: center;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+}
+
+.red-social {
+    display: flex;
+    align-items: flex-end;
+}
+
+.red-social a {
+    display: grid;
+    text-decoration: none;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    margin-left: 15px; /*Cambiamos el margen izquierdo a margen derecho */
+    background-color: #171718;
+    text-align: center;
+    transition: all 300ms ease;
+    border-radius: 25%;
+}
+.box img{
+    background-color: white;
+    color: #000;
+    line-height: 48px;
+    outline-width: 10rem;
+    outline-color: black;
+    border-radius: 25%;
+    box-shadow: 0 0 0 2px #000;
+}
+.red-social a:hover {
+    color: deeppink;
+}

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+ 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TOP ARTISTS</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="fa">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="logo.png">
+</head> 
+    </head>
+
+    <body  >
+        <header>
+            <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <a id="navbar" class="navbar-brand" href="#">
+                <img src="logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-center">
+                AllMusic
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Precios</a>
+                  </li>
+    
+                </ul>
+            </div>
+          </nav> 
+        </header>
+           
+       <div class="container">
+
+       
+        <h1 class="hov" style="font-family:system-ui; color:rgb(46, 0, 89); font-size: 50px; ">TOP TRENDING ARTISTS ALL OF THE TIME</h1>
+        <div style="float:left" >
+        </div>
+        <a> <img src="img7-.png" alt="STREAM NOW" class="image"> </a>
+
+
+        
+        
+        <H2>LISTADO DE ARTISTAS</H2>
+        <div id="salida"> </div>
+    <p>
+
+    </p>
+        <button onclick="listarTodo()" type="button" class="btn btn-dark">Listar Todo</button> 
+        <button onclick="ocultar()" type="button" class="btn btn-dark">Ocultar lista</button>
+        <div id="salida2"></div>  <p> </p>
+        
+    
+        <button onclick="listar1()" type="button" class="btn btn-dark">1- Ganadores de Grammy</button> 
+        <div id="salida3"></div> <p></p>
+        <button onclick="artistasMayores()" type="button" class="btn btn-dark">2- Artistas mayores a 10 años de actividad</button> <div id="salida4"></div> <p> 
+        </p>
+        <button onclick="artistSongs()" type="button" class="btn btn-dark">3- Artistas con más de 200 canciones</button> <div id="salida5"></div> <p> </p>
+        
+        <button onclick="artistasMenores()" type="button" class="btn btn-dark">4- Artistas menores de 10 años de actividad</button> <p> </p>
+        <div id="salida6"></div>
+        <button onclick="artistLessSongs()" type="button" class="btn btn-dark">5- Artistas con menos de 200 canciones</button>
+        <div id="salida7"></div>
+        <div id="respta"></div>
+        <div>
+            <p>
+
+            </p>
+        </div>
+        <p>
+            <input type=number id='nroElem' >
+            <button onclick = "eliminarUno()" type="button" class="btn btn-dark">Eliminar Registro</button>
+        </p>
+        <hr>
+        <p>
+            <input type='checkbox' name='grammy' id='grammy'><label>Grammy</label>
+            <button onclick= "eliminarTodos()" type="button" class="btn btn-dark"> Eliminar </button>
+        </p>
+
+        <br><hr><br>
+        <p>Si desea añadir un artista, ingrese los siguientes datos</p>
+        
+        <p><label>Artista: </label><input type='text' id='artista'></p>
+        <p><label>&nbsp;Años activos: </label><input type='number' id='activos'></p>
+        <p><label>&nbsp;Canciones: </label><input type='number' id='canciones'></p>
+        <p><input type='checkbox' name='wingrammy' id='wingrammy'><label> Ganó Grammy</label> </p>   
+
+            <button onclick= "agregar()" type="button" class="btn btn-dark"> Agregar </button>
+        <div class="sti">
+
+        </div>    
+        
+        <script>
+            
+        // Se recupera los datos desde localstorage para convertirlos en objetos js.
+            var txt_artistas = localStorage.getItem("ls_artistas");
+            if(txt_artistas){
+                var artista = JSON.parse(txt_artistas);
+            }else{
+                var artista = [];
+            }
+
+            var txt_activos = localStorage.getItem("ls_años");
+            if(txt_activos){
+                var activos = JSON.parse(txt_activos);
+            }else{
+                var activos = [];
+            }
+            var txt_canciones = localStorage.getItem("ls_canciones");
+            if(txt_canciones){
+                var canciones = JSON.parse(txt_canciones);
+            }else{
+                var canciones = [];
+            }
+
+            var txt_winGrammy = localStorage.getItem("ls_grammy");
+            if(txt_winGrammy){
+                var winGrammy = JSON.parse(txt_winGrammy);
+            }else{
+                var winGrammy = [];
+            }
+
+            
+            function listarTodo(){
+                str = "<tr> <th><p>Nro</p></th><th><p>Artista </p></th><th><p>Años activo </p></th><th><p>Canciones </p></th><th><p>Win Grammy</p></th></tr>";
+                for(var i=1 ; i<artista.length ; i++){
+                    str = str + "<tr><td>"+i+"</td><td>"+artista[i]+"</td><td>"+activos[i]+"</td><td>"+canciones[i]+"</td><td>"+winGrammy[i]+"</td><tr>"
+                }
+                str= " <table class=default>"+str+"</table>"
+                document.getElementById("salida").innerHTML = str;
+
+                localStorage.setItem("ls_artistas",JSON.stringify(artista));
+                localStorage.setItem("ls_años",JSON.stringify(activos));
+                localStorage.setItem("ls_canciones",JSON.stringify(canciones));
+                localStorage.setItem("ls_grammy",JSON.stringify(winGrammy));
+            }
+
+            function eliminarUno(){
+                var paraEliminar = document.getElementById('nroElem').value;
+                artista.splice(paraEliminar,1);
+                activos.splice(paraEliminar,1);
+                canciones.splice(paraEliminar,1);
+                winGrammy.splice(paraEliminar,1);
+                listarTodo();
+            }
+
+            function eliminarTodos(){
+                var bool_eliminar = document.getElementsByName('grammy');
+                console.log(bool_eliminar[0].checked);
+                var b_elim = bool_eliminar[0].checked;
+                for(var i=0 ; i<artista.length ; i++){
+                    if(winGrammy[i]== b_elim){
+                        artista.splice(i,1);
+                        activos.splice(i,1);
+                        canciones.splice(i,1);
+                        winGrammy.splice(i,1);
+                    }
+                }
+                listarTodo();
+            }
+
+            function listar1(){  
+                var q_grammy= "<tr><td>----Los ganadores son:----</td></tr>";
+            for(var i=0; i<(winGrammy.length); i++){
+                if (winGrammy[i]==true){
+                    q_grammy= q_grammy+"<tr><td>"+artista[i]+"</td><td>"+winGrammy[i]+"</td></tr>";
+                }
+            }
+            q_grammy= "<table>"+q_grammy+"</table>";
+          document.getElementById('salida3').innerHTML= q_grammy;
+            }
+        
+
+        function artistasMayores(){
+            var q_activo= "<tr><td>----Artistas mayores a 10 años de actividad----</td></tr>";
+            for(var i=0; i<(activos.length); i++){
+                if (activos[i]>10){
+                    q_activo= q_activo+"<tr><td>"+artista[i]+"</td><td>"+activos[i]+"</td></tr>";
+                }
+            }
+            q_activo= "<table>"+q_activo+"</table>";
+          document.getElementById('salida4').innerHTML= q_activo;
+        }
+        function artistSongs(){
+            var q_cancion= "<tr><td>----Artistas con más de 200 canciones----</td></tr>";
+            for(var i=0; i<(canciones.length); i++){
+                if (canciones[i]>200){
+                    q_cancion= q_cancion+"<tr><td>"+artista[i]+"</td><td>"+canciones[i]+"</td></tr>";
+                }
+            }
+            q_cancion= "<table>"+q_cancion+"</table>";
+          document.getElementById('salida5').innerHTML= q_cancion;
+        }
+        function artistasMenores(){
+            var q_activos= "<tr><td>----Artistas menores a 10 años de actividad----</td></tr>";
+            for(var i=0; i<(activos.length); i++){
+                if (activos[i]<10){
+                    q_activos= q_activos+"<tr><td>"+artista[i]+"</td><td>"+activos[i]+"</td></tr>";
+                }
+            }
+            q_activos= "<table>"+q_activos+"</table>";
+          document.getElementById('salida6').innerHTML= q_activos; 
+        }
+
+        function artistLessSongs(){
+            var q_canciones= "<tr><td>----Artistas con menos de 200 canciones----</td></tr>";
+            for(var i=0; i<(canciones.length); i++){
+                if (canciones[i]<200){
+                    q_canciones= q_canciones+"<tr><td>"+artista[i]+"</td><td>"+canciones[i]+"</td></tr>";
+                }
+            }
+            q_canciones= "<table>"+q_canciones+"</table>";
+          document.getElementById('salida7').innerHTML= q_canciones;
+        }
+
+//donde se agrega info desde la etiqueta label. 
+            function agregar(){
+                var miArtista = document.getElementById('artista').value;
+                var miActivos = document.getElementById('activos').value;
+                var miCanciones = document.getElementById('canciones').value;
+                var miWinGrammy = document.getElementsByName('wingrammy')[0].checked;
+                
+                artista.push(miArtista);
+                activos.push(miActivos);
+                canciones.push(miCanciones);
+                winGrammy.push(miWinGrammy);
+                listarTodo();
+            }
+
+            function ocultar(){
+            document.getElementById("salida").innerHTML= " "
+        }
+        </script>
+        </div>
+        <footer class="foot">
+                <div class="grupo1">
+                <div class="box">
+                    <a href="#">
+                            <img src="logo.png" alt="Logo AllMusic"  width="48px" height="48px">
+                        </a>
+                    <div class="red-social">
+                        
+                        <a href="#" class="fa fa-facebook-f"></a>
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-whatsapp"></a>
+                    </div>
+                </div>
+            </div>
+            
+        </footer>
+    
+    </body>
+    
+</html>
